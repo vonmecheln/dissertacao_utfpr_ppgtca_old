@@ -1,0 +1,77 @@
+
+
+
+\chapter{Material e Métodos} \label{ch:meto}
+
+Como apresentado no capítulo \ref{ch:fund}, muitos trabalhos com imagens são feitos na tentativa de criar uma ferramenta que auxilie a etapa de análise visual do teste de tetrazólio, analisando os padrões característicos dos danos e definindo quais danos cada sementes possuí.
+
+
+Foi elaborado e apresentado um projeto de pesquisa ao comitê de ética da Universidade Federal Fluminense (UFF), para a obtenção de imagens térmicas por câmera sensível a radiação infravermelha nos pacientes (que consentisse em participar da pesquisa) do Ambulatório de Ginecologia do Hospital Universitário Antônio Pedro (HUAP), e suas disponibilizações para pesquisa. O projeto foi aprovado pelo Comitê de Ética em Pesquisa (CEP) em 04/06/2012 e está registrado na Plataforma Brasil, sob o número CAAE 01042812.0.0000.5243, do Ministério da Saúde. Neste projeto colaboram diversos mastologistas e radiologistas do HUAP. O objetivo é verificar a eficiência das imagens térmicas no diagnóstico precoce de doenças da mama, principalmente o câncer. Para isso, um passo preliminar é construir um banco de dados que permita gerenciar e recuperar informações dos exames dos pacientes, que é o motivo de esta dissertação. O banco de dados servirá para auxiliar em pesquisas futuras sobre imagens térmicas de nosso grupo e de outros grupos de pesquisa.
+
+
+
+\section{Captura de imagens}
+
+O problema das metodologias usadas anteriormente é o processo de captura das imagens. A maioria dos métodos exigem a maior padronização possível das imagens para o processamento digital, exigindo uma estrutura para fotografar as sementes, controlando a iluminação, sombra, foco, distancia, fundo de fácil identificação e a captura da imagem da feição interior e exterior da semente. E levando em consideração que no teste de tetrazólio, para análise de um único lote de soja, é necessário o corte e observação de cem sementes, o processo de captura e catalogação dos dados se torna demorado e pouco produtivo. Sendo este o motivo pelo qual os trabalhos citados utilizam entre xxx e yyy imagens.
+
+Metodologias de análise de imagens como \ew{deep learning} não foram usadas até o momento pela dificuldade de catalogar uma grande quantidade de imagem exigias, na ordem de 20.000 para cada classe. A base de informações deste trabalho, foi projetada para ter no mínimo 80.000 imagens, sendo 20.000 de cada um dos três principais danos encontrados - umidade, percevejo e mecânico -, e 20.000 imagens de sementes sem danos.
+
+
+\section{Analise especialista}
+
+\nota{Aqui o objetivo é ressaltar que o processo de coleta de dados para pesquisa não deve onerar a atividade de análise}
+
+Durante a catalogação das imagens é preciso que um especialista classifique os danos de cada semente e vincule esta informação com cada imagem, este processo é uma etapa a mais na rotina de análise, pois atualmente o analista marca em uma ficha de papel quais danos foram detectados, porém sem indicar em qual sementes, pois para o resultado, basta a quantidade total dos danos por classe. Cada etapa que aumente o tempo análise representar um aumento no custo de produção da soja. Para estimar o tempo usado e a quantidade de análises de tetrazólio de uma safra é preciso calcular o número de lotes de sementes. 
+
+Segundo \cite{FAS2018}, na safra 2013/2014 \nota{Vou atualizar os valores para safra de 2017} no Brasil foram plantados 30,17 Milhões de Hectares de soja. Para calcular a quantidade total de lotes criados para atender esta demanda de plantio é preciso saber a participação de cada cultivar de soja na produção total. Apesar de não existirem informações divulgadas sobre estes valores é possível usar o valor médio para fazer uma estimativa. Para tal foi criada a seguinte fórmula: \nota{Aqui a tentativa é calcular quantas horas de trabalho de análise foram gastas, no Brasil em uma safra, com o teste de tetrazólio}
+
+\begin{equation}
+L = \frac{H.P.M}{G. 4,8.10^{+7}} 
+\end{equation}
+
+Onde,
+L é o total de lotes necessários.
+H é o total de hectares plantados.
+P é a população de plantas desejadas por hectare.
+M é o peso em gramas de mil sementes (PSM).
+G é o percentual de germinação.
+
+A constante 4,8E+7 é calculada considerando que um lote é formado por 120 sacas de 40 Kg, o valor recomendado por \cite{abc} de P é de 320.000, 80\% de germinação é o mínimo aceito por lei por tanto será usado 90\% para G. Porém determinar M, o peso de 1000 sementes, é um desafio maior pois não basta encontrar a média registrada de cada cultivar, pois a falta de chuva durante o período de enchimento de grão pode resultar em sementes pequenas e leves \cite{abc} conhecido como chumbinho, que apesar de não possuir o tamanho e peso tradicional da semente tem o mesmo poder germinativo. \cite{abc} Mostra que a média de PSM encontrada no Brasil é de 175 gramas. Logo, estima-se que foi necessário para a safra Brasileira de soja 2013/2014 a análise de 391.133 lotes de sementes. Cada análise de tz de soja deve ser feita a avaliação uma a uma de 100 sementes por lote, que seriam 39.113.300 de sementes analisadas. \cite{abc} Recomenda que a empresa produtora de sementes realize uma análise no recebimento do lote e outra no final do beneficiamento, apesar de algumas empresas realizarem apenas uma vez o teste, outras realizam varias vezes para acompanhar a situação dos lotes. 
+
+
+Além das oito horas de preparação da amostra, um analista treinado e experiente consegue realizar cinco análises por hora, ao passo de um analista pouco treinado realiza duas análises, chegando assim na média de 3,5 análises por hora, o que representa 223.504 horas de trabalho de análise. Desta forma seria necessário 115 analistas de sementes trabalhando oito horas por dia durante um ano para atender esta demanda. \nota{Este cálculo foi criado por mim com ajuda de um pesquisador da Embrapa em 2014. No trabalho final, esta parte foi retirada pela limitação de páginas para submissão. Eu gostaria de incluir nesta dissertação para contribuir com a direção que pretendo dar ao texto, que é um processo demorado e delicado e que se beneficiará no uso de uma ferramenta computacional. Não sei se este cálculo se encaixa na metodologia deste trabalho, então penso que eu poderia fazer um artigo menor com ele e referenciá-lo. Aproveitando para fazer um pouco da pontuação
+}
+
+
+\section{Validação da análise}
+No procedimento atual de análise de sementes, quando uma amostra é retirada de um lote, são coletadas uma quantidade superior da necessária para posterior conferência em caso de fiscalizações e auditorias, porém, é realizado um novo teste, em outras cem sementes da mesma amostra, pois o processo de análise acaba destruindo a semente.
+
+Uma rotina de análise que registre a imagem das sementes utilizadas promove um processo mais transparente, facilitando as fiscalizações e diminuindo a necessidade de refazer os testes.
+
+
+\section{Estratégia de uso} \nota{Aqui pretendo apresentar a proposta de solução que atenda as dificuldades apresentadas anteriormente}
+
+Para que uma proposta de sistema de catalogação tenha sucesso, deve ser aderente ao fluxo de trabalho atual dos analistas e oferecer benefícios pelo seu uso. Para tal, este trabalho se propõe a desenvolver uma ferramenta prática para o uso durante as análises de tetrazólio enquanto coleta e cataloga os dados para posteriores estudos. 
+
+
+Algumas coisas que ainda preciso escrever ...
+
+horas de trabalho
+
+aderência ao processo - rapidez
+
+base de imagens - volume de imagens
+
+padronização
+gabarito
+
+vantagens - Relatório
+auditoria
+
+aplicativo de celular
+
+validação dos dados
+
+
+
+

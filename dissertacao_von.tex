@@ -1,0 +1,231 @@
+%\documentclass[openright]{normas-utf-tex} %openright = o capitulo comeca sempre em paginas impares
+\documentclass[oneside]{normas-utf-tex} %oneside = para dissertacoes com numero de paginas menor que 100 (apenas frente da folha) 
+
+
+% force A4 paper format
+\special{papersize=210mm,297mm}
+
+\usepackage[
+%pdftex,pdfauthor={Your Name},
+%pdftitle={The Title},
+%pdfsubject={The Subject},
+%pdfkeywords={Some Keywords},
+%pdfproducer={Latex with hyperref, or other system},
+%pdfcreator={pdflatex, or other tool},
+hidelinks,backref]{hyperref} % gera hiperlinks para o sumario, links, referencias -- deve vir antes do 'abntcite' 
+
+\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=2, abnt-etal-list=99]{abntcite} %configuracao correta das referencias bibliograficas.
+
+\usepackage[brazil, english, latin]{babel} % pacote portugues brasileiro
+\usepackage[latin1]{inputenc} % pacote para acentuacao direta
+\usepackage{amsmath,amsfonts,amssymb} % pacote matematico
+\usepackage{graphicx} % pacote grafico
+\usepackage{times} % fonte times
+\usepackage[final]{pdfpages} % adicao da ata
+\usepackage{nameref}
+
+%\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+
+
+\usepackage[disable]{todonotes} % adicionar parâmetro [disable] para ocultar os comentários
+\usepackage{xspace} % usado nos comentários
+%\usepackage{microtype} % faz refinamento de tipografia 
+%\usepackage{multirow} % faz múltiplas linhas na tabela
+%\usepackage{listings} % Include the listings-package
+%\usepackage{float} % fixa a posição da figura/tabela com H
+
+\usepackage{chngcntr} % Corrige o contador de figuras e tabelas
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% atalho para \ref
+\newcommand{\fig}[1]{Figura~\ref{#1}}
+
+% toda vez que inserir palavras em ingles, usar esse comando: \ew{palavraEmIngles}
+\newcommand{\ew}[1]{\selectlanguage{english}\textit{#1}\selectlanguage{brazil}}
+
+% toda vez que inserir palavras em latim, usar esse comando: \lw{palavraEmLatin}
+\newcommand{\lw}[1]{\selectlanguage{latin}\emph{\textit{#1}}\selectlanguage{brazil}}
+
+\newcounter{todocounter}
+\setlength{\marginparwidth}{2cm}
+\reversemarginpar
+\newcommand{\nota}[1]{\xspace\stepcounter{todocounter}\todo[fancyline]{\thetodocounter: #1}}
+\newcommand{\notain}[2]{\stepcounter{todocounter}\todo[inline]{\thetodocounter: (#1) #2}}
+\newcommand{\notahl}[2]{\xspace\stepcounter{todocounter}\texthl{#1}\xspace\todo[fancyline]{\thetodocounter: #2}}
+
+\newcommand{\notaAlu}[1]{\xspace\stepcounter{todocounter}\todo[fancyline, color=green!50]{{\tiny[Aluno]} \scriptsize#1}}
+\newcommand{\notaOri}[1]{\xspace\stepcounter{todocounter}\todo[fancyline, color=blue!30]{{\tiny[Orientador]} \scriptsize#1}}
+
+
+\usepackage{soul} %texto tachado
+ 
+%Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
+%\geometry{left=3.0cm,right=1.5cm,top=4cm,bottom=1cm} 
+
+% ---------- Preambulo ----------
+\instituicao{Universidade Tecnol\'ogica Federal do Paran\'a} % nome da instituicao
+\programa{Programa de P\'{o}s-Gradua\c{c}\~{a}o em Tecnologias Computacionais para o Agroneg\'{o}cio} % nome do programa
+\area{Inform\'atica Industrial} % [Engenharia Biom\'edica] ou [Inform\'atica Industrial] ou [Telem\'atica]
+
+\documento{Disserta\c{c}\~ao} % [Disserta\c{c}\~ao] ou [Tese]
+\nivel{Mestrado} % [Mestrado] ou [Doutorado]
+\titulacao{Mestre} % [Mestre] ou [Doutor]
+
+\titulo{{Geração de banco de imagens padronizadas de teste de tetrazólio nas sementes de soja para identificação de danos através de técnicas de  processamento digital de imagens}} % titulo do trabalho em portugues
+\title{\MakeUppercase{Title in English}} % titulo do trabalho em ingles
+
+\autor{Luís Henrique Manosso Von Mecheln} % autor do trabalho
+\cita{MECHELN, Luís Henrique Manosso Von} % sobrenome (maiusculas), nome do autor do trabalho
+
+\palavraschave{controle de qualidade, dados de sementes de soja, teste de tetrazólio, classificação, recursos visuais} % palavras-chave do trabalho
+\keywords{quality control, soybean seed data, tetrazolium test, classication , visual features} % palavras-chave do trabalho em ingles
+
+%\comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRprogramadata\ da \ABNTinstituicaodata\ como requisito parcial para obten\c{c}\~ao do grau de ``\UTFPRtitulacaodata\ em Ci\^encias'' -- \'Area de Concentra\c{c}\~ao: \UTFPRareadata.}
+
+\orientador{Prof. Dr. Paulo Lopes de Menezes} % nome do orientador do trabalho
+%\orientador[Orientadora:]{Nome da Orientadora} % <- no caso de orientadora, usar esta sintaxe
+%\coorientador{Nome do Co-orientador} % nome do co-orientador do trabalho, caso exista
+%\coorientador[Co-orientadora:]{Nome da Co-orientadora} % <- no caso de co-orientadora, usar esta sintaxe
+%\coorientador[Co-orientadores:]{Nome do Co-orientador} % no caso de 2 co-orientadores, usar esta sintaxe
+%\coorientadorb{Nome do Co-orientador 2}	% este comando inclui o nome do 2o co-orientador
+\coorientador{Prof. Dr. Pedro Luiz de Paula Filho}
+
+
+\local{Medianeira} % cidade
+\data{\the\year} % ano automatico
+
+% desativa hifenizacao mantendo o texto justificado.
+% thanks to Emilio C. G. Wille
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+\sloppy
+
+
+
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	%pdfsubject={\imprimirpreambulo},
+	pdfcreator={LaTeX with abnTeX2},
+	pdfkeywords={}{abnt}{latex}{abntex}{abntex2}{relatório técnico}, 
+	%	colorlinks=true,       		% false: boxed links; true: colored links
+	%	linkcolor=blue,          	% color of internal links
+	%	citecolor=blue,        		% color of links to bibliography
+	%	filecolor=magenta,      		% color of file links
+	%	urlcolor=blue,
+	%	bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+
+%---------- Inicio do Documento ----------
+\begin{document}
+
+
+\capa % geracao automatica da capa
+
+%\folhaderosto % geracao automatica da folha de rosto
+
+\termodeaprovacao
+
+% Lembre-se de que a ficha catalografica eh impressa no verso da folha de rosto
+% Ficha catalografica
+\fichacatpum{T137}
+\fichacatautor{Sobrenome, Nome}
+\fichacatpgbib{\pageref{bibstart}-\pageref{bibend}}
+\fichacatpalcha{1. Teoria do controle. 2. Redes de comutação. 3. TCP/IP (Protocolo de rede de computação), ...}
+\fichacatpdois{CDD (22. ed.) 621.3}
+\fichacatbib{Biblioteca xxxxxx}
+%\fichacat
+
+% insercao da ATA
+%\includepdf{ata.pdf}
+
+
+% dedicatoria
+%\begin{dedicatoria}
+%Texto da dedicat\'oria.
+%\end{dedicatoria}
+
+% agradecimentos (opcional)
+%\begin{agradecimentos}
+%Texto dos agradecimentos.
+%\end{agradecimentos}
+
+% epigrafe (opcional)
+%\begin{epigrafe}
+%Texto da ep\'igrafe.
+%\end{epigrafe}
+
+%resumo
+\input{resumo.tex}
+
+%abstract
+\input{abstract.tex}
+
+% listas (opcionais, mas recomenda-se a partir de 5 elementos)
+%\listadefiguras % geracao automatica da lista de figuras
+%\listadetabelas % geracao automatica da lista de tabelas
+%\listadequadros % adivinhe :)
+\listadesiglas % geracao automatica da lista de siglas
+%\listadesimbolos % geracao automatica da lista de simbolos
+
+% sumario
+\sumario % geracao automatica do sumario
+
+%\setcounter{page}{12}
+
+%---------- Inicio do Texto ----------
+% ELEMENTOS TEXTUAIS 
+% Apresentam a exposição do conteúdo efetivo do trabalho. Um trabalho acadêmico possui três partes fundamentais: introdução, desenvolvimento e conclusão.
+%
+% Introdução
+% Parte inicial do texto, na qual devem constar o tema e a delimitação do assunto tratado, objetivos da pesquisa e outros elementos necessários para situar o tema do trabalho, tais como: justificativa, procedimentos metodológicos (classificação inicial), embasamento teórico (principais bases sintetizadas) e estrutura do trabalho, tratados de forma sucinta. Recursos utilizados e cronograma são incluídos quando necessário
+%
+% Desenvolvimento
+% Parte principal do texto, que contém a exposição ordenada e pormenorizada do assunto. É composta de revisão de literatura, dividida em seções e subseções, material e método(s) e/ou metodologia e resultados, agora descritos detalhadamente. 
+% Cada seção ou subseção deverá ter um título apropriado ao conteúdo.
+% Deve-se utilizar sempre a terceira pessoa do singular na elaboração do texto, mantendo-se a forma impessoal no mesmo.
+
+% Conclusão
+%Parte final do texto, na qual se apresentam as conclusões do trabalho acadêmico, usualmente denominada Considerações Finais. Pode ser usada outra denominação similar que indique a conclusão do trabalho.
+
+
+% recomenda-se a escrita de cada capitulo em um arquivo texto separado (exemplo: intro.tex, fund.tex, exper.tex, concl.tex, etc.) e a posterior inclusao dos mesmos no mestre do documento utilizando o comando \input{}, da seguinte forma:
+
+%\input{2018-06-03-215647}
+%\input{esqueleto.tex}
+
+\input{intro.tex}
+\input{fund.tex}
+%\input{fund_flutter_pt.tex}
+\input{meto.tex}
+
+%\input{meto_android_camera.tex}
+%\input{exper.tex}
+%\input{concl.tex}
+
+
+%\input{transcricao.tex}
+
+%---------- Referencias ----------
+\clearpage % this is need for add +1 to pageref of bibstart used in 'ficha catalografica'.
+%\label{bibstart}
+\bibliography{dissertacao_von} % geracao automatica das referencias a partir do arquivo bibliografia.bib%
+%\label{bibend}
+
+
+\end{document}
